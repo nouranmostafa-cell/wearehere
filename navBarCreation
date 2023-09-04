@@ -1,0 +1,357 @@
+
+/**********************html********************/
+
+
+/* 
+<header id ="header">
+<nav class="primaryHeader">
+
+    <div class="nav_leftPart">
+        <i class="fa-solid fa-people-pulling fa-xl"></i>
+        <span>We Are Here</span>
+    </div>
+
+    <div class="nav_rightPart">
+
+        <button class="mobile-nav-toggle"  aria-controls="primary-navigation" aria-expanded="false">
+            <i class="fas fa-bars fa-xl"></i>
+        </button>
+      <!--The aria-controls attribute identifies the element (or elements) whose contents or presence are controlled by the element on which the attribute is set, regardless of what type of interaction initiates the impacted behavio-->
+        <!--https://briefs.video/videos/what-is-aria-even-for/-->
+  
+       
+        <ul id = "primary-navigation" class="primary-navigation" data-visible="false">
+                <li><a href="https://www.google.com/" target ="_blank">Actions</a></li>
+                <li><a href="https://www.w3schools.com/css"target ="_blank">About Us</a></li>
+                <li><a href="https://www.facebook.com/"target ="_blank">Contacts</a></li>
+       </ul> 
+            
+        
+
+    </div>
+
+</nav>
+</header>
+
+ */
+
+
+
+
+/*************************css**************************/
+
+
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+:root{
+    /*nav colors*/
+  --iconColor:  rgb(245 255 0 /100%);
+  --navColor: rgb(95 158 160/100%);
+  --HoverColor : rgb(40, 77, 78);
+  --navText :yellow;
+  --navShownBackColor : rgb(95 158 160/85%);
+  --navTextSize :  3ch;
+
+
+}
+
+
+
+
+/****************************NAVIGATION PART ***********************************/
+
+
+/*for coloring the icons in navigation bar*/
+
+nav i {
+    color : var(--iconColor );  
+}
+
+#header{
+    
+    /*min-height: 4rem;*/
+    width: 100%;
+    position: sticky;
+    top: 0;
+    transition: top 0.5s; /* Transition effect when sliding down (and up) */
+}
+
+.primaryHeader{
+    background-color: var(--navColor);
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    min-height: 4rem;
+    padding-left: 3em;
+    padding-right: 2em;
+    align-items: center; /*Vertical alignment*/
+    justify-content: space-between;  /*to put nav_leftPart div on the most left  & nav_rightPart on the most right*/
+    
+    
+    overflow: hidden;
+}
+
+nav span{      /*the span in nav , which hold the title "we are here"*/
+    padding-left: 0.3rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: var(--navText);
+    font-size: var(--navTextSize);
+    vertical-align: middle;
+}
+
+
+.primary-navigation{
+    list-style: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color : var(--navText);
+    font-size:  var(--navTextSize);
+    flex-basis: 10em;
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-evenly;
+    gap: 7rem;
+
+    
+}
+
+.primary-navigation a{
+    text-decoration: 0;
+    color: var(--navText);
+
+    padding : 2em 1em;
+    
+}
+
+.primary-navigation a:hover{
+    background-color: var(--HoverColor);
+   
+}
+
+.mobile-nav-toggle{
+    display: none;
+}
+
+
+@media screen and ( (max-width : 526.99px ) or (max-height: 526.99px )){      /*max width  for portrait , max-height for landescape    ex: portrait : 355*755  , landescsape: 755*355*/
+    .primary-navigation{
+        
+        position: fixed;  /*An element with position: fixed; is positioned relative to the viewport "don't care about parents", which means it always stays in the same place even if the page is scrolled . The top, right, bottom, and left properties "inset properties" are used to position the element.*/
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 1rem;
+        gap: 3em;
+        inset: 0 0 0 30%;  /*https://developer.mozilla.org/en-US/docs/Web/CSS/inset*/  /*30% means 30% of the left side*/
+        background: var(--navShownBackColor); 
+
+
+        transform: translateX(100%);
+        transition: transform 0.3s ease-out;
+
+        
+    }
+    .primary-navigation[data-visible="true"]{
+        transform: translateX(0%);
+    }
+    .primary-navigation a{
+        text-decoration: 0;
+        color: var(--navText);
+        padding: 0;
+        
+    }
+    
+    .primary-navigation a:hover{
+        background-color: transparent;
+       
+    }
+
+    .mobile-nav-toggle{
+        position: relative;
+        background: none; 
+        border:0;
+        z-index: 9999;
+        display: flex;
+        justify-content:center;
+        align-items: center;
+       
+    }
+
+
+    .primaryHeader{
+        padding: 1em;
+
+    }
+
+    :root{
+      --navTextSize :  2.5ch;
+    }
+
+   
+}
+
+
+/**شاشات التابليتس **/
+@media screen and (min-width : 527px  ) and (max-width: 910px ){      /*max width  for portrait , max-height for landescape    ex: portrait : 355*755  , landescsape: 755*355*/
+    .primary-navigation{
+        list-style: none;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color : var(--navText);
+        font-size:  var(--navTextSize);
+        display: flex;
+        flex-direction: row;
+    
+        justify-content: space-evenly;
+        gap: 1rem;
+    
+        
+    }
+    
+    .primary-navigation a{
+        text-decoration: 0;
+        color: var(--navText);
+    
+        padding : 2em 1em;
+        
+    }
+    
+    .primary-navigation a:hover{
+        background-color: var(--HoverColor);
+       
+    }
+    .primaryHeader{
+        padding-left: 1em;
+        padding-right: 0.5em;
+    }
+    :root{
+      --navTextSize :  2.3ch;
+    }
+
+   
+}
+
+
+
+
+
+
+/**شاشات التابليتس **/
+@media screen and (min-width : 518px  ) and (max-width: 870px ){      /*max width  for portrait , max-height for landescape    ex: portrait : 355*755  , landescsape: 755*355*/
+    .primary-navigation{
+        list-style: none;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color : var(--navText);
+        font-size:  var(--navTextSize);
+        display: flex;
+        flex-direction: row;
+    
+        justify-content: space-evenly;
+        gap: 1rem;
+    
+        
+    }
+    
+    .primary-navigation a{
+        text-decoration: 0;
+        color: var(--navText);
+    
+        padding : 2rem 1rem;
+        
+    }
+    
+    .primary-navigation a:hover{
+        background-color: var(--HoverColor);
+       
+    }
+    .primaryHeader{
+        padding-left: 1rem;
+        padding-right: 0.5rem;
+    }
+    :root{
+      --navTextSize :  2.3ch;
+    }
+
+   
+}
+
+
+
+
+
+
+
+
+/*************************JAVASCRIPT**************************/
+/* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
+
+/*
+var prevScrollpos = window.scrollY;
+window.onscroll = function() {
+  var currentScrollPos = window.scrollY;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("header").style.top = "0";
+  } else {
+    document.getElementById("header").style.top = "-80px";
+  }
+  prevScrollpos = currentScrollPos;
+}
+
+
+
+
+
+ 
+
+
+
+
+// for cliking navigation button
+
+var primaryNav = document.querySelector(".primary-navigation");
+const nav_toggle = document.querySelector(".mobile-nav-toggle");
+
+
+
+// const iconNav = document.createElement("i");
+// const iconX = document.createElement("i");
+
+
+// iconNav.className = "fas fa-bars fa-xl";
+// iconX.className = "fa-solid fa-x";
+
+
+// nav_toggle.appendChild(iconNav);
+
+
+
+nav_toggle.addEventListener("click" , () => {
+  const Visiability = primaryNav.getAttribute("data-visible");
+  if(Visiability == "false"){
+    primaryNav.setAttribute("data-visible", true);
+    nav_toggle.setAttribute("aria-expanded",true);
+
+    nav_toggle.firstElementChild.className = "fa-solid fa-x";  //to change between icons
+    
+    // nav_toggle.removeChild(iconNav);
+   
+    // nav_toggle.appendChild(iconX);
+ 
+    
+  }
+
+  else if(Visiability == "true"){
+    primaryNav.setAttribute("data-visible", false);
+    nav_toggle.setAttribute("aria-expanded",false);
+
+    nav_toggle.firstElementChild.className = "fas fa-bars fa-xl";
+
+  }
+
+   
+})
+
+*/

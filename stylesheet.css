@@ -1,0 +1,870 @@
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    scroll-behavior: smooth;  
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+:root{
+    /*nav colors*/
+  --iconColor:  rgb(245 255 0 /100%);
+  --navColor: rgb(95 158 160/100%);
+  --HoverColor : rgb(40, 77, 78);
+  --navText :yellow;
+  --navShownBackColor : rgb(95 158 160/85%);
+  --navTextSize :  3ch;
+  --bannerbtnicon : rgb(40, 77, 78);
+
+}
+
+#banner {
+    padding: 3em 10em;
+}
+section{
+    padding: 2em 10em;
+}
+
+
+
+
+
+/****************************NAVIGATION PART ***********************************/
+
+
+/*for coloring the icons in navigation bar*/
+
+nav i{
+    color: var(--iconColor);
+}
+
+
+#header{
+    
+    /*min-height: 4rem;*/
+    width: 100%;
+    position: sticky;
+    top: 0;
+    transition: top 0.5s; /* Transition effect when sliding down (and up) */
+    z-index: 999;  /*مهم جدا*/
+}
+
+.primaryHeader{
+    background-color: var(--navColor);
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    min-height: 4rem;
+    padding-left: 5em;
+    padding-right: 5em;
+    align-items: center; /*Vertical alignment*/
+    justify-content: space-between;  /*to put nav_leftPart div on the most left  & nav_rightPart on the most right*/
+    
+    
+    overflow: hidden;
+}
+
+
+
+
+.nav_leftPart{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.nav_leftPart #navIcon {
+    width: 2rem;
+    margin-right:0.5rem;
+}
+#navIcon #heart,
+#navIcon #upperHand,
+#navIcon #lowerHand {
+    fill:var(--iconColor);
+}
+
+.nav_leftPart span{      /*the span in nav , which hold the title "we are here"*/
+    display: inline;
+    padding-left: 0.3rem;
+    color: var(--navText);
+    font-size: var(--navTextSize);
+}
+
+
+.primary-navigation{
+    list-style: none;
+    color : var(--navText);
+    font-size:  var(--navTextSize);
+    flex-basis: 10em;
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-evenly;
+    gap: 7rem;
+
+    
+}
+
+.primary-navigation a{
+    text-decoration: 0;
+    color: var(--navText);
+
+    padding : 2em 1em;
+    
+}
+
+.primary-navigation a:hover{
+    background-color: var(--HoverColor);
+   
+}
+
+.mobile-nav-toggle{
+    display: none;
+}
+
+
+
+/*phonnes*/
+@media screen and ( (max-width : 617.9px ) or (max-height: 526.99px )){      /*max width  for portrait , max-height for landescape    ex: portrait : 355*755  , landescsape: 755*355*/
+    .primary-navigation{
+        
+        position: fixed;  /*An element with position: fixed; is positioned relative to the viewport "don't care about parents", which means it always stays in the same place even if the page is scrolled . The top, right, bottom, and left properties "inset properties" are used to position the element.*/
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 1rem;
+        gap: 3em;
+        inset: 0 0 0 30%;  /*https://developer.mozilla.org/en-US/docs/Web/CSS/inset*/  /*30% means 30% of the left side*/
+        background: var(--navShownBackColor); 
+
+
+        transform: translateX(100%);
+        transition: transform 0.3s ease-out;
+
+        
+    }
+    .primary-navigation[data-visible="true"]{
+        transform: translateX(0%);
+    }
+    .primary-navigation a{
+        text-decoration: 0;
+        color: var(--navText);
+        padding: 0;
+        
+    }
+  
+    
+    .primary-navigation a:hover{
+        background-color: transparent;
+       
+    }
+
+    .mobile-nav-toggle{
+        position: relative;  /*because z-index needs a position property rather than static */
+        background: none; 
+        border:0;
+        z-index: 9999;
+        display: block;  /*we need to put a display hereto override display:none in the screen*/
+       
+    }
+
+
+    .primaryHeader{
+        padding: 1em;
+
+    }
+
+    :root{
+      --navTextSize :  2.5ch;
+    }
+
+
+   
+
+   
+}
+
+
+/**شاشات التابليتس **/
+@media screen and (min-width : 618px  ) and (max-width: 1024px ){      /*max width  for portrait , max-height for landescape    ex: portrait : 355*755  , landescsape: 755*355*/
+    .primary-navigation{
+        list-style: none;
+        color : var(--navText);
+        font-size:  var(--navTextSize);
+        display: flex;
+        flex-direction: row;
+    
+        justify-content: space-evenly;
+        gap: 1rem;
+    
+        
+    }
+
+    
+
+    
+    .primary-navigation a{
+        text-decoration: 0;
+        color: var(--navText);
+    
+        padding : 2em 1em;
+        
+    }
+    
+    .primary-navigation a:hover{
+        background-color: var(--HoverColor);
+       
+    }
+    .primaryHeader{
+        padding-left: 1em;
+        padding-right: 0.5em;
+        justify-content: space-around; 
+    }
+    :root{
+      --navTextSize :  2.3ch;
+    }
+
+   
+}
+
+
+
+
+
+
+/*************************** banner *****************************/
+
+
+
+
+#banner{
+  
+
+    background: linear-gradient(rgba(0,0,0,0.5),var(--navColor)) , url("images/background.jpg");
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;  /*https://www.w3schools.com/cssref/playdemo.php?filename=playcss_background-position*/   
+
+    background-attachment: fixed;/*بيخلى الصورة ثابتة و بتدى ايفيكت لطيف
+    يعنى لو عملت scrol الصورة مش مش هاتجيب اخرها هاتفضل جايبة اول جزء ليها برده */
+
+    max-width: 100%;
+    min-height: 34rem;  /*28 for screens */
+         
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+
+   justify-content: space-evenly;
+   align-items: center;
+ 
+   
+
+}
+
+#bannerText{
+   padding-top: 5em;
+   padding-left: 1em; 
+ 
+} 
+
+#bannerText h1{    /*maybe change the font later*/
+    font-size: 3rem;
+    color: var(--navText);
+    letter-spacing: 0.1rem ;
+
+}
+#bannerText h2{
+    font-size: 2em;
+    padding-top: 1em;
+    color: var(--navText);
+    font-style: italic;
+    letter-spacing: 0.1rem ;
+} 
+
+#bannerBtn {
+    padding-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    gap : 1rem;
+
+
+} 
+#bannerBtn p{    /*maybe change the font later*/
+
+    font-size: 1.5em;
+    color: var(--navText);
+    font-weight:  bolder; 
+}
+
+
+#bannerBtn a {        /*https://www.tutorialspoint.com/Create-a-link-button-with-borders-using-CSS*/
+    border: 2px solid var(--navText); 
+    padding: 0.2rem;
+    text-decoration: none;
+    color: var(--navText);
+    
+}
+
+ /*#bannerBtn a:hover {
+    color: var(--navColor);
+    background-color:  var(--navText);
+    transition : background-color 0.5s ease ;
+    
+
+} */
+
+#btnIcon{
+    padding:0.5rem;
+    width: 10rem;
+}
+
+
+ #bannerBtn a #lowerHand,
+ #bannerBtn a #upperHand ,
+ #bannerBtn a #heart{
+    fill: var(--bannerbtnicon);
+    
+}
+#bannerBtn a #upperHand {
+    z-index: 1;
+    transform: translateX(50%);
+}
+#bannerBtn a #lowerHand {
+    z-index: 1;
+    transform: translateX(-50%);
+}
+
+#bannerBtn a:hover #upperHand{
+
+    
+    fill: var(--navText);
+    transform: translateX(0%);
+    transition: all 1s ease ;
+}
+#bannerBtn a:hover #lowerHand{
+
+    fill: var(--navText);
+    transform: translateX(0%);
+    transition: all 1s ease ;
+}
+#bannerBtn a:hover #heart{
+    fill: var(--navText);
+   
+    transition: fill 1s ease;
+}
+
+/*animation of btn for the phone and the tablet*/
+
+@keyframes upperhand {
+    from {transform: translateX(50%);}
+    to { transform: translateX(0%);}
+}
+@keyframes lowerhand {
+    from {transform: translateX(-50%);}
+    to { transform: translateX(0%);}
+}
+@keyframes heart {
+    from {fill: var(--bannerbtnicon);}
+    to {  fill: var(--navText);}
+}
+
+
+
+
+
+/*phones*/
+
+@media screen and ( (max-width : 526.99px ) or (max-height: 526.99px )){      /*max width  for portrait , max-height for landescape    ex: portrait : 355*755  , landescsape: 755*355*/
+    
+    #banner{
+        padding: 0;
+    }
+  
+    /*playing the animation*/                      /*https://www.w3schools.com/css/css3_animations.asp  and elzero*/
+
+    #bannerBtn a #upperHand {
+       
+        animation-name: upperhand,heart; 
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+    #bannerBtn a #lowerHand {
+       
+      
+        animation-name: lowerhand,heart;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        
+    }
+    #bannerBtn  #heart{
+       
+        animation-name: heart;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+   
+}
+
+
+/**شاشات التابليتس **/
+@media screen and (min-width : 527px  ) and (max-width: 980px ){      /*max width  for portrait , max-height for landescape    ex: portrait : 355*755  , landescsape: 755*355*/
+
+    #banner{
+        padding: 0;
+    }
+
+    #bannerText{   /*To change the space between Flexbox items, you can adjust the "margin" property on the items themselves.*/
+
+        margin-right : 3rem;
+    }
+    
+    /*playing the animation*/                      /*https://www.w3schools.com/css/css3_animations.asp  and elzero*/
+
+    #bannerBtn a #upperHand {
+        transform: translateX(50%);
+        z-index: 1;
+        animation-name: upperhand,heart;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+    #bannerBtn a #lowerHand {
+        transform: translateX(-50%);
+        z-index: 1;
+        animation-name: lowerhand,heart;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        
+    }
+    #bannerBtn  #heart{
+        z-index: 1;
+        animation-name: heart;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+}
+
+
+
+
+
+
+
+
+/*************************** Section1 Problems *****************************/
+
+
+
+section{
+    padding: 1em 3em;
+}
+
+.title{
+
+    margin-top: 1em;
+    font-size: 4em;
+    color:var(--navColor);
+    text-align: center;
+    background-color: var(--iconColor);
+}
+
+.cards_holder{
+    padding-top: 2em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2em;
+}
+
+.card{
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 1em;
+}
+
+.card h2{
+    font-size: 2em;
+    color:var(--navColor);
+    font-weight: 700;
+}
+.card_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--navColor);
+    gap:0.5em;
+    box-shadow:  6px 6px 6px rgba(0, 0, 0, 0.2);
+
+
+    transform: scale(1);  /* فى الاصل هاتبقى حجمها عادى لحد ما اضعط على الزرار بتاع الفيو*/
+    transition: all 0.7s ease;
+    margin:0em;
+
+}
+.card_container img{
+    width: 25em;
+    height: 15em;
+
+}
+
+.card_container button{
+    text-decoration: none;
+    background: none;
+    border: 0;
+    font-weight: 400;
+    color: var(--navText);
+}
+.card_contents{  /*فى الاصل هاتبقى مخفية لحد ما اضعط على الزرار*/
+    display: none; /*will be changed to display:flex when "view more is clicked"*/
+    flex-direction: column;
+    gap: 0.5em;
+    align-items: center;
+    width: 25em;
+    
+}
+.card_contents[data-visible="true"]{
+    display: flex; /*will be changed to display:flex when "view more is clicked"*/
+    flex-direction: column;
+    gap: 0.5em;
+    align-items: center;
+}
+.card_container[extend="true"]{
+
+transform: scale(1.1);
+transition: all 0.7s ease;
+
+margin-top: 1em; 
+margin-bottom: 1em;
+/*Transform scale keeps the original space around the scaled element , so inorder to leave more space between the scaled container and the elements above& below it we use margins*/
+}
+
+.card_contents p{
+    text-align: center;
+    padding:0 0.3em;
+}
+
+
+
+
+/*Phones*/
+
+@media screen and ( (max-width :  617.9px ) or (max-height: 526.99px )){      /*max width  for portrait , max-height for landescape    ex: portrait : 355*755  , landescsape: 755*355*/
+    
+    section{
+        padding: 1em 2em;
+    }
+        
+    .title{
+        margin-top: 0.4em;
+        font-size: 3em;
+        color:var(--navColor);
+        text-align: center;
+        background-color: transparent;
+
+    }
+
+    .cards_holder{
+        padding-top: 0em;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .card{
+        margin-top: 1em;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    .card h2{
+        font-size: 2em;
+        color:var(--navColor);
+        font-weight: 700;
+    }
+    .card_container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: var(--navColor);
+        gap:0.5em;
+        box-shadow:  6px 6px 6px rgba(0, 0, 0, 0.2);
+
+
+        transform: scale(1);  /* فى الاصل هاتبقى حجمها عادى لحد ما اضعط على الزرار بتاع الفيو*/
+        transition: all 0.7s ease;
+        margin:0em;
+
+    
+    }
+    .card_container img{
+        max-width: 100%;
+    }
+
+    .card_container button{
+        text-decoration: none;
+        background: none;
+        border: 0;
+        font-weight: 400;
+        color: var(--navText);
+    }
+    .card_contents{  /*فى الاصل هاتبقى مخفية لحد ما اضعط على الزرار*/
+        display: none; /*will be changed to display:flex when "view more is clicked"*/
+        flex-direction: column;
+        gap: 0.5em;
+        align-items: center;
+        width: auto;
+
+
+        
+    }
+    .card_contents[data-visible="true"]{
+        display: flex; /*will be changed to display:flex when "view more is clicked"*/
+        flex-direction: column;
+        gap: 0.5em;
+        align-items: center;
+    }
+    .card_container[extend="true"]{
+    
+    transform: scale(1.1);
+    transition: all 0.7s ease;
+
+    margin-top: 1em; 
+    margin-bottom: 1em;
+    /*Transform scale keeps the original space around the scaled element , so inorder to leave more space between the scaled container and the elements above& below it we use margins*/
+    }
+
+    .card_contents p{
+        text-align: center;
+        padding:0 0.3em;
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*****************************Section2 Solutions **************************/ 
+/* 
+post on a donation website and how to use it ,,,
+feeling useless & lonely :  pets, donate , talent , plant
+stressed :  sports , medititation; 
+depression : better call a doctor */
+
+
+
+.actions_container {
+
+    display: flex;
+    flex-direction: column;
+    padding: 10px 7em ;
+}
+
+.actions_container h2{
+    padding-top: 0.5em;
+    font-size: 3vw;
+    font-weight: bolder;
+    color:var(--iconColor);
+    padding-bottom: 10px;
+}
+.actions_container h3{
+    font-size: 3vw;
+    padding-top: 1em;
+    text-align: center;
+    color:var(--navColor);
+}
+
+.actions_card{
+    
+    padding-top: 0.5em;
+    display: flex;
+    flex-direction: row-reverse;
+    gap:3em;
+    align-items: center;
+    
+}
+
+.actions_des{
+    padding-bottom: 3em;
+}
+
+.actions_des p{
+    padding-top: 1em;
+    font-size: 2vw;
+    text-align: left;
+    color:var(--navColor);
+
+}
+
+.actions_des ul{
+    padding: 0.5em 0.5em 2em;
+
+}
+
+.actions_des li {
+    color:var(--navColor);
+    font-size: 1.5vw;
+}
+
+.actions_des li a {
+    color:var(--iconColor);
+}
+
+.actions_card svg{
+    width:400px;
+    height:350px;
+}
+
+
+
+
+@media screen and ( (max-width :  617.9px ) or (max-height: 526.99px )){      /*max width  for portrait , max-height for landescape    ex: portrait : 355*755  , landescsape: 755*355*/
+    
+    section{
+        padding: 1em 2em;
+    }
+        
+ 
+    .actions_container {
+
+        display: flex;
+        flex-direction: column;
+        padding: 0 3px ;
+    }
+    
+    .actions_container h2{
+        font-size: 8vw;
+        font-weight: bolder;
+        color:var(--iconColor);
+        padding-bottom: 10px;
+    }
+    .actions_container h3{
+        font-size: 6vw;
+        padding-top: 5px;
+        text-align: center;
+        color:var(--navColor);
+    }
+    
+    .actions_card{
+        padding-top: 2em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap:0em;
+        
+    }
+    
+
+    .actions_des{
+        padding-bottom: 0em;
+    }
+
+    .actions_des p{
+        padding-top: 1em;
+        font-size: 1.2em;
+        text-align: center;
+        color:var(--navColor);
+    
+    }
+    
+    .actions_des ul{
+        padding: 0.5em 0.5em 2em;
+    
+    }
+    
+    .actions_des li {
+        color:var(--navColor);
+        font-size: 4vw;
+    }
+    
+    .actions_des li a {
+        color:var(--iconColor);
+    }
+    
+    .actions_card svg{
+        width:370px;
+        height:200px;
+    }
+    
+    
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/********************************  Contact Us "as a footer"    *****************************/
+
+#footer{
+
+    min-height: 30vh;
+    background-color: rgb(65, 65, 65);
+}
+
+#footerLogo{
+    padding-top: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+#footerLogo svg{
+    width: 5rem;
+    fill: var(--iconColor);
+}
+#footerLogo h3{
+    padding-top: 0.5em;
+    color: var(--iconColor);
+}
+
+#footerLogo p{
+    padding-top: 1em;
+    text-align: center;
+    color:var(--navColor);
+}
+
+#footerLogo a{
+    padding-top: 0.6em;
+    text-align: center;
+    color:var(--iconColor);
+    text-decoration: none;
+}
+
+#contact{
+    font-size: small;
+}
+
+#copyright{
+    font-size: smaller;
+}
